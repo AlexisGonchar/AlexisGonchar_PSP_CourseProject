@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
-namespace UDPLib
+namespace UdpLib
 {
     /// <summary>
     /// A class for communicating with another computer using the udp protocol.

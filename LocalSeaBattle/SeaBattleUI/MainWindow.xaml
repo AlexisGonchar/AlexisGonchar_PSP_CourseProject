@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SeaBattleUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="311">
     <Grid>
-        
+        <TextBox x:Name="textBoxIpAddress" HorizontalAlignment="Left" Height="45" Margin="10,39,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="227" FontFamily="Times New Roman" FontSize="36"/>
+        <Button x:Name="buttonCreateClient" Content="Create player" HorizontalAlignment="Left" Margin="120,203,0,0" VerticalAlignment="Top" Width="75" Click="buttonCreateClient_Click"/>
+        <TextBox x:Name="textBoxRemotePort" HorizontalAlignment="Left" Height="45" Margin="136,119,0,0" TextWrapping="Wrap" Text="4005" VerticalAlignment="Top" Width="80" FontFamily="Times New Roman" FontSize="36" UndoLimit="4" MaxLines="1" MaxLength="4" IsUndoEnabled="True"/>
+        <TextBox x:Name="textBoxLocalPort" HorizontalAlignment="Left" Height="45" Margin="10,119,0,0" TextWrapping="Wrap" Text="4004" VerticalAlignment="Top" Width="85" RenderTransformOrigin="-0.762,-1.196" FontSize="36" FontFamily="Times New Roman" UndoLimit="4" MaxLines="1" MaxLength="4"/>
+        <Label x:Name="label" Content="IP Address" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label1" Content="Local Port" HorizontalAlignment="Left" Margin="10,93,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label2" Content="Remote Port" HorizontalAlignment="Left" Margin="136,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.434,0.788"/>
+        <Button x:Name="buttonLocalPortUp" Content="△" HorizontalAlignment="Left" Margin="100,119,0,0" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonLocalPortUp_Click"/>
+        <Button x:Name="buttonLocalPortDown" Content="▽" HorizontalAlignment="Left" Margin="100,144,0,0" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonLocalPortDown_Click"/>
+        <Button x:Name="buttonRemotePortUp" Content="△" HorizontalAlignment="Left" Margin="221,119,0,0" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonRemotePortUp_Click"/>
+        <Button x:Name="buttonRemotePortDown" Content="▽" HorizontalAlignment="Left" Margin="221,144,0,0" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonRemotePortDown_Click"/>
+        <Button x:Name="buttonClose" Content="×" HorizontalAlignment="Left" Margin="259,3,0,0" VerticalAlignment="Top" Width="30" Click="buttonClose_Click" Background="Red" FontWeight="Bold" Height="40" FontSize="20"/>
+        <TextBox x:Name="textBoxMessage" HorizontalAlignment="Left" Height="24" Margin="48,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="buttonSend" Content="Check connection" HorizontalAlignment="Left" Margin="48,310,0,0" VerticalAlignment="Top" Width="120" Click="buttonSend_Click"/>
+        <Label x:Name="labelReceive" Content="Label" HorizontalAlignment="Left" Margin="87,335,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
