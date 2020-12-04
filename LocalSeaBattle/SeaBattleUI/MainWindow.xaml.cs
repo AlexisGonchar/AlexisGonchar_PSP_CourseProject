@@ -26,13 +26,9 @@ namespace SeaBattleUI
             int remotePort = int.Parse(textBoxRemotePort.Text);
             client = new Client(ip, remotePort, localPort);
             client.Notify += ShowMessage;
-            buttonCreateClient.Background = Brushes.Green;
-        }
-
-        private void buttonSend_Click(object sender, RoutedEventArgs e)
-        {
-            string data = textBoxMessage.Text;
-            client.SendData(data);
+            labelReceive.Content = "Waiting for connection...";
+            buttonCancel.Visibility = Visibility.Visible;
+            buttonCreateClient.Visibility = Visibility.Hidden;
         }
 
         private void AddMessage(string message)
@@ -43,15 +39,6 @@ namespace SeaBattleUI
         private void ShowMessage(string message)
         {
             Dispatcher.Invoke(action, message);
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            if (client != null)
-            {
-                client.CloseClient();
-            }
-            Close();
         }
 
         private void buttonLocalPortUp_Click(object sender, RoutedEventArgs e)
@@ -84,6 +71,23 @@ namespace SeaBattleUI
 
             if (port < 10000 && port > 0)
                 textBoxRemotePort.Text = (port - 1).ToString();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (client != null)
+            {
+                client.CloseClient();
+            }
+        }
+
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            buttonCancel.Visibility = Visibility.Hidden;
+            buttonCreateClient.Visibility = Visibility.Visible;
+            client.CloseClient();
+            client = null;
+            labelReceive.Content = "";
         }
     }
 }

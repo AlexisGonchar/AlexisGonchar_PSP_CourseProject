@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SeaBattleGame.App" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeaBattleGame.BitmapWorker" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>BitmapWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeaBattleGame.GameSettingsWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAQAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameSettingsWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SeaBattleGame.MainViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SeaBattleGame.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAgAAwAAAAAAAAAAAAAAAAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SeaBattleGame.Renderer" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCgCAAAEAAgAIwAAAgIgAAAEIAAABCAiBAAAAECAEQ=</HashCode>
+      <FileName>Render.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeaBattleGame.Resources" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.GameField" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAAICAAAAAAAISiAgAgEAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>GameField.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeaBattleGame.Properties.Resources" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SeaBattleGame.Properties.Settings" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.Bullet" Collapsed="true">
+    <Position X="5" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.AuroraShip" Collapsed="true">
+    <Position X="7" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.FlyingDutchmanShip" Collapsed="true">
+    <Position X="7" Y="4.75" Width="1.75" />
+    <InheritanceLine Type="GameObjects.ShipDecorator" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="2.191" />
+        <Point X="8.25" Y="2.45" />
+        <Point X="9.102" Y="2.45" />
+        <Point X="9.102" Y="4.596" />
+        <Point X="7.875" Y="4.596" />
+        <Point X="7.875" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.ForwardShip" Collapsed="true">
+    <Position X="7" Y="5.75" Width="1.5" />
+    <InheritanceLine Type="GameObjects.ShipDecorator" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="2.191" />
+        <Point X="8.25" Y="2.45" />
+        <Point X="9.102" Y="2.45" />
+        <Point X="9.102" Y="5.596" />
+        <Point X="7.75" Y="5.596" />
+        <Point X="7.75" Y="5.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.GhostShip" Collapsed="true">
+    <Position X="5" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.PiligrimShip" Collapsed="true">
+    <Position X="7" Y="3.75" Width="1.5" />
+    <InheritanceLine Type="GameObjects.ShipDecorator" ManuallyRouted="true">
+      <Path>
+        <Point X="8.25" Y="2.191" />
+        <Point X="8.25" Y="2.45" />
+        <Point X="9.076" Y="2.45" />
+        <Point X="9.076" Y="3.596" />
+        <Point X="7.75" Y="3.596" />
+        <Point X="7.75" Y="3.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.ShipDecorator" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.Features" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.Rock" Collapsed="true">
+    <Position X="5" Y="4.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.Ship" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.ShipFactory" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameObjects.ShipPlayer" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameControl.DirectXComponent" Collapsed="true">
+    <Position X="2.25" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameControl.Win32Control" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameControl.Direct2DComponent" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

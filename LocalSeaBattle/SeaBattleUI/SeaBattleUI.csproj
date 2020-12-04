@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UdpLib\UdpLib.csproj">
+      <Project>{2b6f240e-c616-4f45-8f18-dcd8190d0dd4}</Project>
+      <Name>UdpLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

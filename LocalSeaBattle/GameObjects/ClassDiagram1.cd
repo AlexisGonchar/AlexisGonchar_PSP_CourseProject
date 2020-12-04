@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameObjects.Bullet" Collapsed="true">
+    <Position X="14.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.AuroraShip" Collapsed="true">
+    <Position X="2.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAACAAAA=</HashCode>
+      <FileName>Decorator\AuroraShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.FlyingDutchmanShip" Collapsed="true">
+    <Position X="7.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAACAAAA=</HashCode>
+      <FileName>Decorator\FlyingDutchmanShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.ForwardShip" Collapsed="true">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAACAAAA=</HashCode>
+      <FileName>Decorator\ForwardShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.GhostShip" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAACAAAA=</HashCode>
+      <FileName>Decorator\GhostShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.PiligrimShip" Collapsed="true">
+    <Position X="5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAACAAAA=</HashCode>
+      <FileName>Decorator\PiligrimShip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.ShipDecorator" Collapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Decorator\ShipDecorator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.Features" Collapsed="true">
+    <Position X="16" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAEAQAAAAAAAAA=</HashCode>
+      <FileName>Features.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.Rock" Collapsed="true">
+    <Position X="14.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.Ship" Collapsed="true">
+    <Position X="6" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAoEAoAQAQABAIAAgAQAFAQCBAAAAAAEAAAg=</HashCode>
+      <FileName>Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.ShipFactory" Collapsed="true">
+    <Position X="8" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShipFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameObjects.ShipPlayer" Collapsed="true">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACABAAgAAAAAAAAAAAAAAAAABAACBAAAAAAAAAAA=</HashCode>
+      <FileName>ShipPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
