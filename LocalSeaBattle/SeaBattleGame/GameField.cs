@@ -1,6 +1,7 @@
 ﻿using SharpDX;
 using System.Windows.Input;
 using System.Collections.Generic;
+using UdpLib;
 
 namespace GameObjects
 {
@@ -17,17 +18,19 @@ namespace GameObjects
 
         ShipFactory shipFactory = new ShipFactory();
         Vector4 borders;
+        Client client;
         public GameField()
         {
 
         }
 
 
-        public void Initialize(Dictionary<string, int> dc)
+        public void Initialize(Dictionary<string, int> dc, int idShip, Client client)
         {
-            GeneratePlayer(dc);
+            GeneratePlayer(dc, idShip);
             GenerateRocks();
             borders = new Vector4(30, 0, 704, 570);
+            this.client = client;
         }
 
         //Генерация скал
@@ -40,10 +43,19 @@ namespace GameObjects
         }
 
         //Создание игроков
-        private void GeneratePlayer(Dictionary<string, int> dc)
+        private void GeneratePlayer(Dictionary<string, int> dc, int idShip)
         {
-            Vector2 position1 = new Vector2(200, 200);
-            Vector2 position2 = new Vector2(420, 200);
+            Vector2 position1, position2;
+            if (idShip == 1)
+            {
+                position1 = new Vector2(200, 200);
+                position2 = new Vector2(420, 200);
+            }
+            else
+            {
+                position2 = new Vector2(200, 200);
+                position1 = new Vector2(420, 200);
+            }
             int ship1, ship2;
             ship1 = dc["Ship1"];
             ship2 = dc["Ship2"];
@@ -74,11 +86,14 @@ namespace GameObjects
                 MovePlayer(Key.A, player1, new Vector2(-player1.GetSpeed(), 0), 1);
                 MovePlayer(Key.D, player1, new Vector2(player1.GetSpeed(), 0), 3);
 
+
+                client.MyShip.x = (int)player1.position.X;
+                client.MyShip.y = (int)player1.position.Y;
+                client.MyShip.dircetion = player1.direction;
                 //Движение второго игрока
-                MovePlayer(Key.Up, player2, new Vector2(0, -player2.GetSpeed()), 2);
-                MovePlayer(Key.Down, player2, new Vector2(0, player2.GetSpeed()), 4);
-                MovePlayer(Key.Left, player2, new Vector2(-player2.GetSpeed(), 0), 1);
-                MovePlayer(Key.Right, player2, new Vector2(player2.GetSpeed(), 0), 3);
+                player2.position = new Vector2(client.EnemyShip.x, client.EnemyShip.y);
+                Features.SwapDirection(player2, client.EnemyShip.dircetion);
+
 
                 //Смена режима стрельбы
                 if (Keyboard.IsKeyDown(Key.R) && player1.IsReload == 0)
@@ -94,14 +109,21 @@ namespace GameObjects
 
                 //Стрельба первого игрока
                 if (Keyboard.IsKeyDown(Key.F) && player1.IsReload == 0)
+                {
                     Shooting(player1);
+                    client.MyShip.bullet = 1;
+                }
+                    
 
                 if (player1.IsReload > 0)
                     player1.IsReload--;
 
                 //Стрельа второго игрока
-                if (Keyboard.IsKeyDown(Key.RightCtrl) && player2.IsReload == 0)
+                if(client.EnemyShip.bullet == 1)
+                {
                     Shooting(player2);
+                    client.EnemyShip.bullet = 0;
+                }
 
                 if (player2.IsReload > 0)
                     player2.IsReload--;

@@ -16,10 +16,12 @@ namespace UdpLib
         private int localPort; // local port
         bool appQuit;
         UdpClient client;
+        int idShip;
+        public ShipData MyShip, EnemyShip;
 
         public delegate void ReceiveHandler(string message);
         public event ReceiveHandler Notify;
-        public Client(string ip, int remotePort, int localPort)
+        public Client(string ip, int remotePort, int localPort, int idShip)
         {
             try
             {
@@ -28,7 +30,10 @@ namespace UdpLib
                 this.remotePort = remotePort;
                 appQuit = false;
                 client = new UdpClient(localPort);
+                this.idShip = idShip;
                 RunConnect();
+                MyShip = new ShipData();
+                EnemyShip = new ShipData();
             }
             catch (Exception ex)
             {
@@ -47,9 +52,11 @@ namespace UdpLib
             Thread.Sleep(100);
             try
             {
-                byte[] data = Encoding.Unicode.GetBytes(((int)Status.ReadyToConnect).ToString());
+                byte[] data = Encoding.Unicode.GetBytes(idShip.ToString());
                 client.Send(data, data.Length, remoteAddress, remotePort);
                 ReceiveData();
+                ReceiveData();
+                RunGameLogic();
             }
             catch (Exception ex)
             {
@@ -66,6 +73,52 @@ namespace UdpLib
                 string message = Encoding.Unicode.GetString(data);
 
                 Notify(message);
+            }
+            catch (Exception ex)
+            {
+                Notify(ex.Message);
+            }
+        }
+
+        private void RunGameLogic()
+        {
+            Thread receiveThread = new Thread(new ThreadStart(ShipDataRecieve));
+            receiveThread.Start();
+            Thread sendThread = new Thread(new ThreadStart(ShipDataSend));
+            sendThread.Start();
+        }
+
+        public void ShipDataRecieve()
+        {
+            IPEndPoint remoteIp = null; // адрес входящего подключения
+            
+                while (!appQuit)
+                {
+                    byte[] data = client.Receive(ref remoteIp); // получаем данные
+                    string message = Encoding.Unicode.GetString(data);
+                    string[] values = message.Split('|');
+                    EnemyShip.x = int.Parse(values[0]);
+                    EnemyShip.y = int.Parse(values[1]);
+                    EnemyShip.dircetion = int.Parse(values[2]);
+                    EnemyShip.bullet = int.Parse(values[3]);
+                }
+            
+        }
+
+        public void ShipDataSend()
+        {
+            try
+            {
+                while (!appQuit)
+                {
+                    byte[] data = Encoding.Unicode.GetBytes(MyShip.x + "|" + MyShip.y + "|" + MyShip.dircetion + "|" + MyShip.bullet);
+                    if(MyShip.bullet == 1)
+                    {
+                        MyShip.bullet = 0;
+                    }
+                    client.Send(data, data.Length, remoteAddress, remotePort);
+                    Thread.Sleep(30);
+                }
             }
             catch (Exception ex)
             {

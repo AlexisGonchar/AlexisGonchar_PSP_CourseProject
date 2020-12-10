@@ -4,6 +4,7 @@ using GameControl;
 using System.Windows.Input;
 using System.Collections.Generic;
 using GameObjects;
+using UdpLib;
 
 namespace SeaBattleGame
 {
@@ -29,9 +30,9 @@ namespace SeaBattleGame
         /// Constructor
         /// </summary>
         /// <param name="dc"></param>
-        public Renderer(Dictionary<string, int> dc)
+        public Renderer(Dictionary<string, int> dc, int idShip, Client client)
         {
-            field.Initialize(dc);
+            field.Initialize(dc, idShip, client);
         }
         
         /// <summary>

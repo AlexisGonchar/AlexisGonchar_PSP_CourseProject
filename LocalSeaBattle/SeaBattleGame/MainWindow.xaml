@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SeaBattleGame"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="SeaBattle" Height="650" Width="740" ResizeMode="NoResize">
+        Title="SeaBattle" Height="722" Width="740" ResizeMode="NoResize" Closing="mainWindow_Closing">
     <Grid>
         <Grid Height="590" Width="733" VerticalAlignment="Top">
             <StackPanel x:Name="stackPanel" Height="572">
@@ -27,7 +27,19 @@
             <Button x:Name="newGameButton" Content="Начать" HorizontalAlignment="Left" Margin="181,10,0,0" VerticalAlignment="Top" Width="76" Click="newGameButton_Click"/>
             <Label x:Name="label" Content="Выбранные корабли:" HorizontalAlignment="Left" Margin="262,7,-9,0" VerticalAlignment="Top"/>
             <Label x:Name="labelShips" Content="" HorizontalAlignment="Left" Margin="393,7,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBoxIpAddress" HorizontalAlignment="Left" Height="45" Margin="0,62,0,-65" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="227" FontFamily="Times New Roman" FontSize="36"/>
+            <TextBox x:Name="textBoxLocalPort" HorizontalAlignment="Left" Height="45" Margin="232,62,0,-65" TextWrapping="Wrap" Text="4004" VerticalAlignment="Top" Width="85" RenderTransformOrigin="-0.762,-1.196" FontSize="36" FontFamily="Times New Roman" UndoLimit="4" MaxLines="1" MaxLength="4"/>
+            <TextBox x:Name="textBoxRemotePort" HorizontalAlignment="Left" Height="45" Margin="366,62,0,-65" TextWrapping="Wrap" Text="5555" VerticalAlignment="Top" Width="80" FontFamily="Times New Roman" FontSize="36" UndoLimit="4" MaxLines="1" MaxLength="4" IsUndoEnabled="True"/>
+            <Button x:Name="buttonLocalPortUp" Content="△" HorizontalAlignment="Left" Margin="322,62,0,-40" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonLocalPortUp_Click"/>
+            <Button x:Name="buttonLocalPortDown" Content="▽" HorizontalAlignment="Left" Margin="322,87,0,-65" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonLocalPortDown_Click"/>
+            <Button x:Name="buttonRemotePortUp" Content="△" HorizontalAlignment="Left" Margin="451,62,0,-40" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonRemotePortUp_Click"/>
+            <Button x:Name="buttonRemotePortDown" Content="▽" HorizontalAlignment="Left" Margin="451,87,0,-65" VerticalAlignment="Top" Width="16" Height="20" FontWeight="Bold" Click="buttonRemotePortDown_Click"/>
+            <Label x:Name="label56" Content="IP адрес сервера" HorizontalAlignment="Left" Margin="0,36,0,-20" VerticalAlignment="Top"/>
+            
         </Grid>
+        <Label Content="Мой порт" HorizontalAlignment="Left" Margin="243,611,0,0" VerticalAlignment="Top"/>
+        <Label Content="Порт сервера" HorizontalAlignment="Left" Margin="378,611,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="labelReceive" Content="" HorizontalAlignment="Left" Margin="493,657,0,0" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
