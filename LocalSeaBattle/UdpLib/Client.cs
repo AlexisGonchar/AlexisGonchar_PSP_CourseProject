@@ -11,12 +11,11 @@ namespace UdpLib
     /// </summary>
     public class Client
     {
-        UdpClient receiver;
         private string remoteAddress; // the addres to which we connect
         private int remotePort; // the port to which we connect
         private int localPort; // local port
-        bool connect, appQuit;
-        Status status = Status.None;
+        bool appQuit;
+        UdpClient client;
 
         public delegate void ReceiveHandler(string message);
         public event ReceiveHandler Notify;
@@ -27,10 +26,9 @@ namespace UdpLib
                 this.localPort = localPort;
                 remoteAddress = ip;
                 this.remotePort = remotePort;
-                connect = false;
                 appQuit = false;
-                RunRecieve(Status.ReadyToConnect);
-                RunConnect(Status.ReadyToConnect);
+                client = new UdpClient(localPort);
+                RunConnect();
             }
             catch (Exception ex)
             {
@@ -38,108 +36,47 @@ namespace UdpLib
             }
         }
 
-        public void RunConnect(Status statusloc)
+        public void RunConnect()
         {
-            Thread connectThread = new Thread(new ParameterizedThreadStart(Connect));
-            connectThread.Start(statusloc);
+            Thread receiveThread = new Thread(new ThreadStart(Connect));
+            receiveThread.Start();
         }
 
-        public void RunRecieve(Status statusloc)
+        public void Connect()
         {
-            Thread receiveThread = new Thread(new ParameterizedThreadStart(ReceiveData));
-            receiveThread.Start(statusloc);
-        }
-
-        public void Connect(Object statusloc)
-        {
-            Status stat = (Status) statusloc;
-            status = stat;
-            UdpClient sender = new UdpClient(); // создаем UdpClient для отправки сообщений
+            Thread.Sleep(100);
             try
             {
-                Thread.Sleep(300);
-                int sleepTime = 25;
-                int waitingTime = 10000;
-                while (status != (stat + 1) && !appQuit)
-                {
-                    byte[] data = Encoding.Unicode.GetBytes(((int)stat).ToString());
-                    sender.Send(data, data.Length, remoteAddress, remotePort);
-                    Thread.Sleep(sleepTime);
-                    waitingTime -= sleepTime;
-                    if (waitingTime <= 0)
-                    {
-                        Notify("Timeout");
-                        sender.Close();
-                        Thread.CurrentThread.Abort();
-                    }
-                }
+                byte[] data = Encoding.Unicode.GetBytes(((int)Status.ReadyToConnect).ToString());
+                client.Send(data, data.Length, remoteAddress, remotePort);
+                ReceiveData();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                sender.Close();
+                Notify(ex.Message);
             }
         }
 
-        public void SendData(string message)
+        public void ReceiveData()
         {
-            UdpClient sender = new UdpClient(); // создаем UdpClient для отправки сообщений
-            try
-            {
-                byte[] data = Encoding.Unicode.GetBytes(message);
-                sender.Send(data, data.Length, remoteAddress, remotePort);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                sender.Close();
-            }
-        }
-
-        public void ReceiveData(Object statusloc)
-        {
-            Status stat = (Status)statusloc;
-            receiver = new UdpClient(localPort); // UdpClient для получения данных
             IPEndPoint remoteIp = null; // адрес входящего подключения
             try
             {
-                while (status != (stat + 1) && !appQuit)
-                {
-                    byte[] data = receiver.Receive(ref remoteIp); // получаем данные
-                    string message = Encoding.Unicode.GetString(data);
-                    if(int.Parse(message) == (int)stat)
-                    {
-                        SendData(((int)Status.Connect).ToString());
-                        Notify("Connect");
-                        status = stat + 1;
-                    }
-                    else if (int.Parse(message) == (int)stat + 1)
-                    {
-                        Notify("Connect");
-                        status = stat + 1;
-                    }
-                }
+                byte[] data = client.Receive(ref remoteIp); // получаем данные
+                string message = Encoding.Unicode.GetString(data);
+
+                Notify(message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                receiver.Close();
+                Notify(ex.Message);
             }
         }
 
         public void CloseClient()
         {
-            if (receiver != null)
-                receiver.Close();
+            if (client != null)
+                client.Close();
             appQuit = true;
         }
 

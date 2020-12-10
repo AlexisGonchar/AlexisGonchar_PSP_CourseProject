@@ -34,9 +34,7 @@ namespace SeaBattleGame
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
             client.ClearNotify();
-            client.Notify += OpenGameDispatcher;
-            client.RunRecieve(Status.ReadyToPlay);
-            client.RunConnect(Status.ReadyToPlay);            
+            client.Notify += OpenGameDispatcher;           
         }
 
         public void OpenGameDispatcher(string message)
