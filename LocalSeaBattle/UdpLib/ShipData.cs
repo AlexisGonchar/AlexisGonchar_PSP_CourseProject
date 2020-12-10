@@ -2,6 +2,6 @@
 {
     public class ShipData
     {
-        public int x, y, dircetion, bullet;
+        public int x, y, dircetion, bullet, mode;
     }
 }

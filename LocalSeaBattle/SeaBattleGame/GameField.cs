@@ -100,11 +100,13 @@ namespace GameObjects
                 {
                     player1.weaponsMode = !player1.weaponsMode;
                     player1.IsReload = player1.GetWeaponsReload();
+                    client.MyShip.mode = 1;
                 }
-                if (Keyboard.IsKeyDown(Key.RightShift) && player2.IsReload == 0)
+                if (client.EnemyShip.mode == 1)
                 {
                     player2.weaponsMode = !player2.weaponsMode;
                     player2.IsReload = player2.GetWeaponsReload();
+                    client.EnemyShip.mode = 0;
                 }
 
                 //Стрельба первого игрока

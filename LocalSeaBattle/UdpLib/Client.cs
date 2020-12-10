@@ -101,6 +101,7 @@ namespace UdpLib
                     EnemyShip.y = int.Parse(values[1]);
                     EnemyShip.dircetion = int.Parse(values[2]);
                     EnemyShip.bullet = int.Parse(values[3]);
+                    EnemyShip.mode = int.Parse(values[4]);
                 }
             
         }
@@ -111,10 +112,14 @@ namespace UdpLib
             {
                 while (!appQuit)
                 {
-                    byte[] data = Encoding.Unicode.GetBytes(MyShip.x + "|" + MyShip.y + "|" + MyShip.dircetion + "|" + MyShip.bullet);
+                    byte[] data = Encoding.Unicode.GetBytes(MyShip.x + "|" + MyShip.y + "|" + MyShip.dircetion + "|" + MyShip.bullet + "|" + MyShip.mode);
                     if(MyShip.bullet == 1)
                     {
                         MyShip.bullet = 0;
+                    }
+                    if (MyShip.mode == 1)
+                    {
+                        MyShip.mode = 0;
                     }
                     client.Send(data, data.Length, remoteAddress, remotePort);
                     Thread.Sleep(30);
