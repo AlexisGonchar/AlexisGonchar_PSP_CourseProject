@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SeaBattleGame</RootNamespace>
     <AssemblyName>SeaBattleGame</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -193,6 +193,10 @@
     <ProjectReference Include="..\GameObjects\GameObjects.csproj">
       <Project>{22a99bcb-bdc7-401c-8822-2779a15898a6}</Project>
       <Name>GameObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UdpLib\UdpLib.csproj">
+      <Project>{2b6f240e-c616-4f45-8f18-dcd8190d0dd4}</Project>
+      <Name>UdpLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

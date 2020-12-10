@@ -16,6 +16,7 @@ namespace UdpLib
         private int remotePort; // the port to which we connect
         private int localPort; // local port
         bool connect, appQuit;
+        Status status = Status.None;
 
         public delegate void ReceiveHandler(string message);
         public event ReceiveHandler Notify;
@@ -28,10 +29,8 @@ namespace UdpLib
                 this.remotePort = remotePort;
                 connect = false;
                 appQuit = false;
-                Thread connectThread = new Thread(new ThreadStart(Connect));
-                Thread receiveThread = new Thread(new ThreadStart(ReceiveData));
-                receiveThread.Start();
-                connectThread.Start();
+                RunRecieve(Status.ReadyToConnect);
+                RunConnect(Status.ReadyToConnect);
             }
             catch (Exception ex)
             {
@@ -39,20 +38,35 @@ namespace UdpLib
             }
         }
 
-        public void Connect()
+        public void RunConnect(Status statusloc)
         {
+            Thread connectThread = new Thread(new ParameterizedThreadStart(Connect));
+            connectThread.Start(statusloc);
+        }
+
+        public void RunRecieve(Status statusloc)
+        {
+            Thread receiveThread = new Thread(new ParameterizedThreadStart(ReceiveData));
+            receiveThread.Start(statusloc);
+        }
+
+        public void Connect(Object statusloc)
+        {
+            Status stat = (Status) statusloc;
+            status = stat;
             UdpClient sender = new UdpClient(); // создаем UdpClient для отправки сообщений
             try
             {
-                int sleepTime = 15;
+                Thread.Sleep(300);
+                int sleepTime = 25;
                 int waitingTime = 10000;
-                while (!connect && !appQuit)
+                while (status != (stat + 1) && !appQuit)
                 {
-                    byte[] data = Encoding.Unicode.GetBytes("1");
-                    sender.Send(data, data.Length, remoteAddress, remotePort); // отправка
+                    byte[] data = Encoding.Unicode.GetBytes(((int)stat).ToString());
+                    sender.Send(data, data.Length, remoteAddress, remotePort);
                     Thread.Sleep(sleepTime);
                     waitingTime -= sleepTime;
-                    if(waitingTime <= 0)
+                    if (waitingTime <= 0)
                     {
                         Notify("Timeout");
                         sender.Close();
@@ -76,7 +90,7 @@ namespace UdpLib
             try
             {
                 byte[] data = Encoding.Unicode.GetBytes(message);
-                sender.Send(data, data.Length, remoteAddress, remotePort); // отправка
+                sender.Send(data, data.Length, remoteAddress, remotePort);
             }
             catch (Exception ex)
             {
@@ -88,24 +102,27 @@ namespace UdpLib
             }
         }
 
-        public void ReceiveData()
+        public void ReceiveData(Object statusloc)
         {
+            Status stat = (Status)statusloc;
             receiver = new UdpClient(localPort); // UdpClient для получения данных
             IPEndPoint remoteIp = null; // адрес входящего подключения
             try
             {
-                while (!appQuit)
+                while (status != (stat + 1) && !appQuit)
                 {
                     byte[] data = receiver.Receive(ref remoteIp); // получаем данные
                     string message = Encoding.Unicode.GetString(data);
-                    if(message == "1")
+                    if(int.Parse(message) == (int)stat)
                     {
-                        SendData("2");
-                    }
-                    else if (message == "2")
-                    {
-                        connect = true;
+                        SendData(((int)Status.Connect).ToString());
                         Notify("Connect");
+                        status = stat + 1;
+                    }
+                    else if (int.Parse(message) == (int)stat + 1)
+                    {
+                        Notify("Connect");
+                        status = stat + 1;
                     }
                 }
             }
@@ -124,6 +141,11 @@ namespace UdpLib
             if (receiver != null)
                 receiver.Close();
             appQuit = true;
+        }
+
+        public void ClearNotify()
+        {
+            Notify = null;
         }
     }
 }

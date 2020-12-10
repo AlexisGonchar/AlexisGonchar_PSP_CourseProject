@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 using UdpLib;
+using SeaBattleGame;
 
 namespace SeaBattleUI
 {
@@ -13,6 +14,7 @@ namespace SeaBattleUI
     {
         Action<string> action;
         Client client;
+        SeaBattleGame.MainWindow window;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +36,11 @@ namespace SeaBattleUI
         private void AddMessage(string message)
         {
             labelReceive.Content = message;
+            if(message == "Connect" && window == null)
+            {
+                window = new SeaBattleGame.MainWindow(client);
+                window.Show();
+            }
         }
 
         private void ShowMessage(string message)

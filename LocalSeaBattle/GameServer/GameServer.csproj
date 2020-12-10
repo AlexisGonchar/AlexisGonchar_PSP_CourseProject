@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A0635A3-3509-4817-94CD-BFA978B338F7}</ProjectGuid>
+    <ProjectGuid>{6FB0F98F-F84E-4ABF-A023-73E1F88A88DC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SeaBattleUI</RootNamespace>
-    <AssemblyName>SeaBattleUI</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>GameServer</RootNamespace>
+    <AssemblyName>GameServer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -93,16 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SeaBattleGame\SeaBattleGame.csproj">
-      <Project>{5fb57935-83f8-4ff5-b207-6914a442c869}</Project>
-      <Name>SeaBattleGame</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UdpLib\UdpLib.csproj">
-      <Project>{2b6f240e-c616-4f45-8f18-dcd8190d0dd4}</Project>
-      <Name>UdpLib</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

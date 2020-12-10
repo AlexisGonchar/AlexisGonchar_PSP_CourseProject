@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using UdpLib;
 
 namespace SeaBattleGame
 {
@@ -14,10 +15,12 @@ namespace SeaBattleGame
         private GameSettingsWindow gsw;
         private Dictionary<string, int> dc;
         private String[] ships = { "Аврора", "Летучий Голандец", "Форвард", "Призрак", "Пилигрим" };
+        private Client client;
 
-        public MainWindow()
+        public MainWindow(Client client)
         {
             InitializeComponent();
+            this.client = client;
         }
 
         private void openSettingsButton_Click(object sender, RoutedEventArgs e)
@@ -30,6 +33,20 @@ namespace SeaBattleGame
 
         private void newGameButton_Click(object sender, RoutedEventArgs e)
         {
+            client.ClearNotify();
+            client.Notify += OpenGameDispatcher;
+            client.RunRecieve(Status.ReadyToPlay);
+            client.RunConnect(Status.ReadyToPlay);            
+        }
+
+        public void OpenGameDispatcher(string message)
+        {
+            Dispatcher.Invoke(OpenGame);
+        }
+
+        public void OpenGame()
+        {
+            client.ClearNotify();
             if (App.Current.Windows.OfType<GameSettingsWindow>().Count() == 0 && dc != null)
             {
                 labelShips.Content = ships[dc["Ship1"]] + " и " + ships[dc["Ship2"]];
